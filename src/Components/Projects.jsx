@@ -13,10 +13,11 @@ import { FaReact, FaPython, FaNodeJs, FaDiscord } from 'react-icons/fa';
 import { SiFlask, SiMariadb, SiExpress, SiCplusplus, SiLinode, SiLua } from 'react-icons/si';
 import { CodeBlock, tomorrowNightEighties } from "react-code-blocks";
 
-function Projects() {
+function Projects(props) {
     const { colorMode } = useColorMode();
     const isDark = colorMode === "dark";
     const [isNotSmallerScreen] = useMediaQuery("(min-width:600px)");
+    const { setWindows } = props;
 
     return (
         <Stack>
@@ -61,6 +62,7 @@ function Projects() {
                         full-stack development) and guided the development of the User Interface 
                         and API's needed for the application.`
                     }
+                    setWindows={setWindows}
                 />
                 <ProjectItemRight
                     img={posh}
@@ -79,6 +81,7 @@ function Projects() {
                         be searched, sorted, etc.`
                     }
                     git="https://github.com/nikcich/PoshmarkWeb"
+                    setWindows={setWindows}
                 />
 
                 <ProjectItemLeft
@@ -93,6 +96,7 @@ function Projects() {
                         `
                     }
                     git="https://github.com/nikcich/MonteCarloSim"
+                    setWindows={setWindows}
                 />
                 <ProjectItemRight
                     img={binder}
@@ -109,6 +113,7 @@ function Projects() {
                     }
                     git="https://github.com/nikcich/BinderCodes"
                     demo="https://binder.cichosz.dev/"
+                    setWindows={setWindows}
                 />
 
                 <ProjectItemLeft
@@ -126,6 +131,7 @@ function Projects() {
                     content={
                         `A discord bot that allows for users to associate a discord account with a roblox account. This then enabled the ability for a roblox based "radio" GUI to be created for users to interact with, moving a users associated discord account from voice chat channels creating a seudo-Radio frequncy system. This was developed using ReactJS, NodeJS, DiscordJS, MariaDB, Lua, Roblox API's, and deployed on a Linux server.`
                     }
+                    setWindows={setWindows}
                 />
 
                 {/* 

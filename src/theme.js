@@ -1,5 +1,6 @@
 import { extendTheme } from '@chakra-ui/react'
 import { createBreakpoints } from "@chakra-ui/theme-tools"
+import { mode } from '@chakra-ui/theme-tools'
 
 const theme = extendTheme({
     fonts: {
@@ -13,15 +14,18 @@ const theme = extendTheme({
         xl: "1200px",
     }),
     styles: {
-        global: {
+        global: (props) => ({
             body: {
                 transitionProperty: "all",
                 transitionDuration: "normal",
+                bg: mode('#E0E0E0', '#1a202c')(props),
             },
-        },
+        }),
     },
     config: {
-        disableTransitionOnChange: false
+        disableTransitionOnChange: false,
+        initialColorMode: "dark",
+        useSystemColorMode: false,
     }
 });
 

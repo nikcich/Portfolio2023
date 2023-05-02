@@ -1,14 +1,24 @@
 import { useColorMode, Flex, Spacer, Tooltip, IconButton, Show, Hide, Box } from "@chakra-ui/react";
-import React from "react";
-import { Heading } from '@chakra-ui/react'
-import { FaGithub, FaLinkedin, FaSun, FaMoon } from "react-icons/fa";
+import React, { useEffect } from "react";
 import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
+
+
+function mapRange(input) {
+    return ((-0.00022*input*input) + (0.91*input));
+}
 
 function Header(options) {
     const { colorMode, toggleColorMode } = useColorMode();
     const isDark = colorMode === "dark";
-    const { setPage } = options;
+    const { setPage, scrollDiv, currPage } = options;
+
+    const scrollSetPage = (pg) => {
+        scrollDiv.current.scrollTo(0, 0);
+        setTimeout(() => {
+            setPage(pg);
+        }, currPage == '/' ? 0 : mapRange(scrollDiv.current.scrollTop));
+    }
 
     return (
         <Flex
@@ -22,11 +32,11 @@ function Header(options) {
         >
 
             <Hide below='md'>
-                <DesktopHeader setPage={setPage} />
+                <DesktopHeader setPage={scrollSetPage} />
             </Hide>
 
             <Show below='md'>
-                <MobileHeader setPage={setPage} />
+                <MobileHeader setPage={scrollSetPage} />
             </Show>
 
         </Flex>

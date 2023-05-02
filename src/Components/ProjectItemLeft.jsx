@@ -5,7 +5,7 @@ import { FaGithub } from "react-icons/fa";
 import { BsDisplay } from "react-icons/bs";
 
 function ProjectItemLeft(props) {
-    const { img, title, tags, content, git, demo } = props;
+    const { img, title, tags, content, git, demo, setWindows } = props;
 
     const { colorMode } = useColorMode();
     const isDark = colorMode === "dark";
@@ -82,7 +82,11 @@ function ProjectItemLeft(props) {
 
                             {demo != undefined &&
                                 <IconButton icon={<BsDisplay />} isRound ml={2}
-                                    onClick={() => window.open(demo, '_blank')}
+                                    // onClick={() => window.open(demo, '_blank')}
+                                    onClick={() => setWindows((old) => {
+                                        if (!old.includes(demo)) old = [...old, demo];
+                                        return old;
+                                    })}
                                 />
                             }
                         </Flex>

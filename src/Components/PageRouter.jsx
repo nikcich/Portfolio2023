@@ -3,9 +3,30 @@ import Projects from './Projects';
 import { PageContext } from '../App';
 import Experience from "./Experience";
 import Home from "./Home";
+import { useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
+const variants = {
+    enter: {
+        y: [4000, 0],
+        transition: {
+            duration: 1,
+        }
+    },
+    exit: {
+        y: -4000,
+        transition: {
+            duration: 1,
+            type: "spring",
+            damping: 10,
+            stiffness: 60,
+            restDelta: 0.001
+        }
+    }
+};
 
 function PageRouter(options) {
-    const { setPage } = options;
+    const { setPage, rotate, setWindows } = options;
 
     return (
         <PageContext.Consumer>
@@ -13,32 +34,41 @@ function PageRouter(options) {
             {page => {
                 return (
                     <>
-                        <SlideFade in={page === '/exp'}
-                            offsetY='1000px'
-                            unmountOnExit
+                        <motion.div
+                            variants={variants}
+                            animate={(page == '/') ? 'enter' : 'exit'}
+                            style={{
+                                position: "absolute", top: '0'
+                            }}
                         >
-                            <Experience />
-                        </SlideFade>
+                            <Home setPage={setPage} setWindows={setWindows} />
+                        </motion.div>
 
-                        <SlideFade in={page === '/projects'}
-                            offsetY='1000px'
-                            unmountOnExit
+                        <motion.div
+                            variants={variants}
+                            animate={(page == '/exp') ? 'enter' : 'exit'}
+                            style={{
+                                position: "absolute", top: '0',
+                            }}
                         >
-                            <Projects />
-                        </SlideFade>
+                            <Experience setWindows={setWindows} />
+                        </motion.div>
 
-                        <SlideFade in={page === '/'}
-                            offsetY='1000px'
-                            unmountOnExit
+                        <motion.div
+                            variants={variants}
+                            animate={(page == '/projects') ? 'enter' : 'exit'}
+                            style={{
+                                position: "absolute", top: '0',
+                            }}
                         >
-                            <Home setPage={setPage} />
-                        </SlideFade>
+                            <Projects setWindows={setWindows} />
+                        </motion.div>
                     </>
                 );
             }}
 
 
-        </PageContext.Consumer>
+        </PageContext.Consumer >
     );
 }
 
