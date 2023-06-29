@@ -8,13 +8,15 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const variants = {
     enter: {
-        y: [4000, 0],
+        y: ["100%", "100%", "0%"],
+        scale: ["25%", "100%"],
         transition: {
             duration: 1,
         }
     },
     exit: {
-        y: -4000,
+        y: ["0%","0%","-100%"],
+        scale: ["100%", "60%", "25%"],
         transition: {
             duration: 1,
             type: "spring",
@@ -25,6 +27,7 @@ const variants = {
     }
 };
 
+
 function PageRouter(options) {
     const { setPage, rotate, setWindows } = options;
 
@@ -33,12 +36,16 @@ function PageRouter(options) {
 
             {page => {
                 return (
-                    <>
+                    <div style={{
+                        position: 'relative', height: '100%', width: '100vw',
+                        display: 'flex', flexDirection: 'column', alignItems: 'center'
+                    }}>
                         <motion.div
                             variants={variants}
                             animate={(page == '/') ? 'enter' : 'exit'}
+                            initial={{ y: '-100%' }}
                             style={{
-                                position: "absolute", top: '0'
+                                position: "absolute", zIndex: '100'
                             }}
                         >
                             <Home setPage={setPage} setWindows={setWindows} />
@@ -47,23 +54,26 @@ function PageRouter(options) {
                         <motion.div
                             variants={variants}
                             animate={(page == '/exp') ? 'enter' : 'exit'}
+                            initial={{ y: '-100%' }}
                             style={{
-                                position: "absolute", top: '0',
+                                position: "absolute"
                             }}
                         >
                             <Experience setWindows={setWindows} />
                         </motion.div>
 
+
                         <motion.div
                             variants={variants}
                             animate={(page == '/projects') ? 'enter' : 'exit'}
+                            initial={{ y: '-100%' }}
                             style={{
-                                position: "absolute", top: '0',
+                                position: "absolute"
                             }}
                         >
                             <Projects setWindows={setWindows} />
                         </motion.div>
-                    </>
+                    </div>
                 );
             }}
 

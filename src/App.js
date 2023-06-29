@@ -21,9 +21,8 @@ function App() {
   return (
     <PageContext.Provider value={page}>
       <Flex ref={dragConstraints} p={0} style={{
-        overflow: 'hidden', height: '100vh', width: '100vw', position: 'absolute', top: '0', left: '0',
-        display: 'flex', alignItems: 'center'
-
+        overflow: 'hidden', maxHeight: '99vh', height: '100vh', width: '100vw', position: 'absolute', top: '0', left: '0',
+        display: 'flex', alignItems: 'center', overflow: 'hidden'
       }}
         flexDirection={{ base: 'column', md: 'column', lg: "column", xl: "column" }}
       >
@@ -31,20 +30,20 @@ function App() {
         <Header setPage={setPage} scrollDiv={scrollDiv} currPage={page} />
 
         <Flex style={{
-          overflowX: 'hidden', height: '100%', width: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center',
-          position: 'relative'
+          overflowX: 'hidden', maxHeight: '100vh', height: '100%', width: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center',
+          position: 'relative', overflow: 'hidden'
         }}
         >
           <Flex ref={scrollDiv} style={{
             overflowX: 'hidden', height: '100%', width: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center',
-            position: 'absolute', top: '0', left: '0',
+            position: 'absolute', top: '0', left: '0'
           }}
           >
             <PageRouter setPage={setPage} setWindows={setWindows} />
+
           </Flex>
+
         </Flex>
-
-
       </Flex>
       <Background />
 

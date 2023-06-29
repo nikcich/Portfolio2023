@@ -20,10 +20,10 @@ function Experience(options) {
     const isDark = colorMode === "dark";
 
     const skills = [
-        "JavaScript", "C++", "Java", "Python", "HTML", "CSS", "React.js", "Node.js", "Express.js",
-        "Backbone.js", "jQuery", "Bootstrap", "Handlebars.js", "Angular",
-        "Lua", "MySQL", "MariaDB", "JBoss EAP/WildFly", "GitHub", "Gerrit", "Jenkins", "Nexus", "Nginx", "Docker",
-        "Node-RED", "IBM Cloud", "OpenShift", "Linux", "Windows", "MacOS", "C#",
+        "JavaScript", "Java", "Python", "C++", "HTML", "CSS", "React", "Node.js", "Express.js",
+        "Backbone.js", "jQuery", "Bootstrap", "Handlebars.js", "Angular.js",
+        "MySQL", "MariaDB", "PostgreSQL", "MongoDB", "JBoss EAP/WildFly", "Git", "Gerrit", "Nginx", "Docker",
+        "Node-RED", "IBM Cloud", "OpenShift",
     ];
 
     return (
@@ -37,7 +37,7 @@ function Experience(options) {
             >
                 <ExperienceItem
                     title="Software Engineer I"
-                    desc="Full Stack Software Engineer"
+                    desc="Full-stack software development, primarily working in Java and JavaScript."
                     dates={[`Aug 2022 - Present`, monthDiff(now, new Date('2022-08-01T00:00:00+05:30')) + " months"]}
                     company="Raytheon Intelligence & Space"
                     img={rtxspinner}

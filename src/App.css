@@ -26,13 +26,6 @@
     background-size: 100% 2px;
 }
 
-
-
-
-
-
-
-
 .parent {
     display: grid;
     grid-template-columns: 50px repeat(4, 1fr);
@@ -78,7 +71,6 @@
 
     scroll-behavior: smooth;
 }
-
 
 canvas {
     display: block;
